@@ -1,30 +1,64 @@
 #!/usr/bin/env sh
-
 ####################################################
-#        Cloudreve Service Management Script       #
+#    Cloudreve Service Management Script Config    #
 #  Written by Eric Liu (PixelWine), under GPL 3.0. #
 ####################################################
 
-## Load Script Config
-
-source ./panConfig
-
-
-## End: Load Script Config
-
-greetingAndTips(){
-    echo "[=== Cloudreve Service Management Script ===]"
-    echo "[=== You are at: $(pwd) ===]"
-    echo "[=== Read parameters: $* ===]"
-    echo "[=== Now is $(date), hello! ===]"
-    echo "[=== Help ===]"
-    echo "[===========================================]"
+function panScriptConfigLoader(){
+    PAN_pathToCloudreve="" # I need a DIRECTORY such as "/opt" but not "/opt/" or "/opt/cloudreve"
+    PAN_managementTool="" # systemctl or supervisor
+    PAN_editor="" # such as nano, vim or emacs
+    PAN_test=0 # you must change this if you changed the config.
+    # PAN_editor need to be able to accept param like "nano xxx.config" (param 1 is file name)
+    # DO NOT CHANGE THE CODE between "DANGEROUS",
+    # or it MIGHT CRASHED.
+    ### DANGEROUS BEGIN
+    PAN_startCloudreve=1
+    PAN_stopCloudreve=2
+    PAN_showStatus=3
+    PAN_updateDaemonConfig=4
+    PAN_editDaemonConfig=5
+    PAN_enableService=6
+    PAN_restartCloudreve=7
+    PAN_exitPrompt=8
+    PAN_editPANConfig=9
+    PAN_editCloudreveConfig=10
+    PAN_isConfigured="isConfigured.pan"
+    ### DANGEROUS AFTER
+    # you can change the line after me
+    
+    echo "Load PAN Script Config Successfully."
 }
 
-getPrompt(){
-    echo -e "script> \c"
-    read argument
-    return argument;
+# DO NOT CHANGE THE CODE between "DANGEROUS",
+# or it MIGHT CRASHED.
+### DANGEROUS BEGIN
+
+function loadPanScriptDefaultConfig(){
+    PAN_pathToCloudreve="/opt/cloudreve"
+    PAN_managementTool="systemctl" # systemctl or supervisor
+    PAN_editor="nano"
+    PAN_test=0
+    PAN_startCloudreve=1
+    PAN_stopCloudreve=2
+    PAN_showStatus=3
+    PAN_updateDaemonConfig=4
+    PAN_editDaemonConfig=5
+    PAN_enableService=6
+    PAN_restartCloudreve=7
+    PAN_exitPrompt=8
+    PAN_editPANConfig=9
+    PAN_editCloudreveConfig=10
+    PAN_isConfigured="isConfigured.pan"
+    echo "Load PAN Script Default Config Successfully."
+    
 }
 
-greetingAndTips
+### DANGEROUS AFTER
+# you can change the line after me
+
+# It looks like this function is useless.
+# function panScriptConfigUnsetter(){
+#     unset PAN_test PAN_pathToCloudreve PAN_managementTool PAN_editor PAN_startCloudreve PAN_stopCloudreve PAN_showStatus PAN_updateDaemonConfig PAN_editDaemonConfig PAN_enableService PAN_restartCloudreve PAN_exitPrompt PAN_editPANConfig PAN_editCloudreveConfig
+#     echo "Unset PAN Script Config Successfully."
+# }

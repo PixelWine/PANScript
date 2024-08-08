@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ####################################################
 #        Cloudreve Service Management Script       #
@@ -37,6 +37,7 @@ getPrompt(){
         "exit")
             echo "[error] Exit by action of user."
             return ${PAN_exitPrompt}
+            exit
         ;;
         "start")
             echo "[info] Starting Cloudreve Service..."
